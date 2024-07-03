@@ -1,0 +1,8 @@
+- Configurar una base de datos para gestionar el stock de productos.
+- Diseñar una interfaz de usuario intuitiva para que los empleados puedan verificar la disponibilidad de productos rápidamente.
+- Configurar una base de datos para almacenar datos de ventas.
+- Automatizar la generación de informes diarios, semanales y mensuales para evaluar el desempeño del negocio.
+- Desarrollar la lógica para calcular y gestionar puntos de clientes.
+- Permitir a los clientes ver su saldo de puntos y las recompensas disponibles.
+- Diseñar una interfaz de gestión de tareas intuitiva para asignar y monitorear tareas del personal.
+- Integrar el sistema de gestión de tareas con el calendario para una mejor planificación del personal.
