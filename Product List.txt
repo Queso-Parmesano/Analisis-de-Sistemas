@@ -1,0 +1,23 @@
+- Configurar una base de datos para almacenar información sobre el stock disponible.
+- Diseñar la interfaz de usuario que permita a los usuarios consultar la disponibilidad de productos.
+- Incluir funcionalidades como búsqueda de productos, filtrado por categoría y visualización detallada de productos.
+- Configurar una base de datos para almacenar información sobre las transacciones de ventas.
+- Escribir scripts para extraer datos de la base de datos de ventas.
+- Automatizar la generación de informes diarios, semanales y mensuales.
+- Configurar la programación de los scripts para su ejecución periódica.
+- Desarrollar algoritmos que analicen los datos de ventas para identificar los productos más demandados en diferentes períodos.
+- Diseñar algoritmos para identificar los productos más solicitados en diferentes momentos.
+- Crear representaciones visuales de datos utilizando gráficos y tablas.
+- Desarrollar formularios de registro para que los clientes puedan registrarse en el sitio web.
+- Configurar una base de datos para almacenar información de los clientes.
+- Implementar la lógica para gestionar la información de los clientes en la base de datos.
+- Definir los beneficios disponibles para los clientes y los puntos requeridos para obtenerlos.
+- Implementar la lógica para calcular los puntos acumulados por cada compra y actualizar el saldo de puntos de los clientes.
+- Desarrollar la funcionalidad para que los clientes puedan consultar su saldo de puntos y ver los beneficios disponibles.
+- Configurar la lógica para que los clientes puedan canjear sus puntos por beneficios.
+- Diseñar una interfaz intuitiva que muestre las tareas asignadas a cada empleado.
+- Incluir funcionalidades para marcar tareas como completadas, asignar nuevas tareas y establecer fechas límite.
+- Integrar el sistema de gestión de tareas con el calendario para que los empleados puedan ver sus tareas junto con sus horarios.
+- Recopilar tutoriales, guías visuales y manuales de procedimientos relevantes para el personal.
+- Desarrollar nuevos recursos si es necesario para abordar áreas específicas.
+- Organizar los recursos de manera clara y accesible en la sección designada del sitio web.
