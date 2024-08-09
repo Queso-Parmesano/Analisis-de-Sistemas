@@ -1,0 +1,5 @@
+Configurar una base de datos para almacenar información sobre la disponibilidad de canchas y reservas.
+Diseñar la interfaz de usuario que permita a los empleados consultar la disponibilidad de canchas y realizar reservas.
+Incluir funcionalidades como selección de canchas, visualización de horarios y opción de reservar por hora o en paquetes.
+Implementar un sistema para gestionar las balas del paquete y las balas extras.
+Diseñar un sistema de generación de informes sobre el uso de canchas, balas y análisis de tendencias de reservas.
