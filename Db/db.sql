@@ -27,6 +27,6 @@ fechaFin datetime,
 precio int(11),
 balasExtras int(11),
 primary key (idReserva),
-foreign key(idSucursal) references sucursales(idSucursales),
+foreign key (idSucursal) references sucursales(idSucursales),
 foreign key (idPromo) references promos(idPromo)
 )
