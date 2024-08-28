@@ -1,0 +1,31 @@
+Manual de Staff
+1. Objetivos del Manual
+Este manual tiene como objetivo proporcionar una guía clara y sencilla sobre cómo utilizar el software de reservas y promociones de la empresa. Está diseñado para que el staff pueda manejar todas las funciones del software sin problemas, asegurando un flujo de trabajo eficiente y una experiencia satisfactoria para los usuarios.
+
+2. Roles y Responsabilidades
+Roles:
+Staff: Es el único responsable de manejar el software. Su función principal es interactuar con el usuario, gestionar las reservas, agregar o eliminar promociones, y asegurar que todos los datos se guarden correctamente en la base de datos.
+Usuario: El usuario es la persona que solicita una reserva. Esta solicitud se realiza en persona, y el staff es quien ingresa los datos necesarios en el sistema.
+Responsabilidades del Staff:
+Gestión de Reservas: Recibir las solicitudes de reservas de los usuarios y procesarlas en el sistema.
+Gestión de Promociones: Agregar, verificar o eliminar promociones según sea necesario.
+Guardado de Cambios: Asegurarse de que todos los cambios realizados en el sistema se guarden correctamente.
+Atención al Usuario: Brindar un servicio de calidad al usuario durante la interacción.
+3. Procedimientos Operativos
+Realizar una Reserva:
+El usuario se acerca al staff y solicita una reserva en persona.
+El staff ingresa los detalles de la reserva en el sistema.
+Si es necesario, el staff puede agregar extras a la reserva o verificar si el usuario aplica para alguna promoción.
+El staff guarda todos los cambios realizados.
+Informar al usuario que la reserva ha sido realizada con éxito.
+Gestión de Promociones:
+Agregar Promociones: Ingresar las nuevas promociones en el sistema.
+Verificar Promociones: Comprobar si una reserva cumple con los requisitos de alguna promoción activa.
+Eliminar Promociones: Retirar promociones que ya no están en vigor del sistema.
+4. Políticas y Normas
+No existen políticas específicas relacionadas con el uso del software. Sin embargo, el staff debe cumplir con las siguientes normas generales:
+
+Uniforme de Trabajo: Todo el personal debe llevar el uniforme adecuado durante su turno de trabajo.
+Respeto al Horario: El staff debe cumplir puntualmente con los horarios de trabajo asignados.
+5. Soporte y Contactos
+En caso de que surja algún problema técnico o duda sobre el uso del software, el staff debe ponerse en contacto con el soporte técnico a través del siguiente correo electrónico: alansitoxd456@gmail.com.
