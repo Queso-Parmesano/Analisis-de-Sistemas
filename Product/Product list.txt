@@ -1,0 +1,15 @@
+-Recopilar requisitos y definir funcionalidades clave.
+-Modelar las entidades y relaciones del sistema.
+-Diseñar la arquitectura del software.
+-Crear el esquema de la base de datos.
+-Diseñar prototipos de interfaces de usuario.
+-Especificar API y servicios necesarios.
+-Configurar el entorno de desarrollo.
+-Implementar la base de datos.
+-Desarrollar la funcionalidad de toma de pedidos.
+-Programar la gestión de datos de camioneros.
+-Implementar el seguimiento y estado del pedido.
+-Integrar mecanismos de gestión de demoras.
+-Desarrollar la funcionalidad de confirmación de entrega.
+-Realizar pruebas de integración y sistema.
+-Desplegar en producción y realizar mantenimiento continuo.
