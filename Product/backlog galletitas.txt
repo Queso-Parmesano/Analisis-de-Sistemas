@@ -1,0 +1,5 @@
+-Recopilar requisitos y definir funcionalidades clave
+-Modelar las entidades y relaciones del sistema
+-Diseñar la arquitectura del software
+-Implementar la base de datos
+-Realizar pruebas de integración y sistema
