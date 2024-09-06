@@ -95,25 +95,25 @@ def mostrar_agregar_reserva():
 
 def mostrar_agregar_promo():
     limpiar_frame(contenido_frame)
-    
+
     formulario_frame = ttk.Frame(contenido_frame, padding="10 10")
     formulario_frame.grid(row=0, column=0, sticky="nsew")
-    
-    ttk.Label(formulario_frame, text="Nombre Promo").grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
+    ttk.Label(formulario_frame, text="Descripcion de Promo").grid(row=0, column=0, padx=10, pady=10, sticky="w")
     ttk.Label(formulario_frame, text="Balas Extras").grid(row=1, column=0, padx=10, pady=10, sticky="w")
     ttk.Label(formulario_frame, text="Precio Agregado").grid(row=2, column=0, padx=10, pady=10, sticky="w")
-    
-    nombre_promo = ttk.Entry(formulario_frame)
+
+    descripcion_promo = ttk.Entry(formulario_frame)
     balas_extras = ttk.Entry(formulario_frame)
     precio_agregado = ttk.Entry(formulario_frame)
-    
-    nombre_promo.grid(row=0, column=1, padx=10, pady=10)
+
+    descripcion_promo.grid(row=0, column=1, padx=10, pady=10)
     balas_extras.grid(row=1, column=1, padx=10, pady=10)
     precio_agregado.grid(row=2, column=1, padx=10, pady=10)
-    
+
     def guardar_promo():
-        query = "INSERT INTO promos (nombre, balas_extras, precio_agregado) VALUES (%s, %s, %s)"
-        valores = (nombre_promo.get(), balas_extras.get(), precio_agregado.get())
+        query = "INSERT INTO promos (descripcion, balas_extras, precio_agregado) VALUES (%s, %s, %s)"
+        valores = (descripcion_promo.get(), balas_extras.get(), precio_agregado.get())
         cursor.execute(query, valores)
         conn.commit()
         messagebox.showinfo("Éxito", "Promoción agregada correctamente")
