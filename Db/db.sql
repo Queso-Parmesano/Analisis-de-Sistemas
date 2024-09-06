@@ -1,5 +1,5 @@
-CREATE DATABASE paintball2;
-USE paintball2;
+CREATE DATABASE paintball;
+USE paintball;
 
 CREATE TABLE `promos` (
   `id` int(11) NOT NULL,
