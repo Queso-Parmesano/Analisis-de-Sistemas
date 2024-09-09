@@ -1,15 +1,15 @@
-import mysql.connector
-import tkinter as tk
+from ttkwidgets.autocomplete import AutocompleteCombobox
+from tkcalendar import DateEntry
 from tkinter import messagebox
 from tkinter import ttk
-from tkcalendar import DateEntry
-from ttkwidgets.autocomplete import AutocompleteCombobox
+import mysql.connector
+import tkinter as tk
 
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",
-    database="paintball"
+    database="paintball2"
 )
 cursor = conn.cursor()
 
@@ -19,10 +19,10 @@ def limpiar_frame(frame):
 
 def mostrar_promociones(frame):
     ttk.Label(frame, text="Promociones Disponibles", font=("Arial", 12, "bold")).pack(pady=10)
-    
+
     cursor.execute("SELECT * FROM promos")
     promos = cursor.fetchall()
-    
+
     for promo in promos:
         promo_text = f"Promo ID: {promo[0]}\nBalas Extras: {promo[2]}\nPrecio: ${promo[3]}"
         promo_frame = ttk.Frame(frame, padding="10 5")
@@ -42,7 +42,7 @@ def mostrar_agregar_reserva():
 
     formulario_frame = ttk.Frame(contenido_frame, padding="10 10")
     formulario_frame.grid(row=0, column=0, sticky="nsew")
-    
+
     ttk.Label(formulario_frame, text="Sucursal ID").grid(row=0, column=0, padx=10, pady=10, sticky="w")
     ttk.Label(formulario_frame, text="Promo ID").grid(row=1, column=0, padx=10, pady=10, sticky="w")
     ttk.Label(formulario_frame, text="Cancha").grid(row=2, column=0, padx=10, pady=10, sticky="w")
@@ -54,7 +54,7 @@ def mostrar_agregar_reserva():
     sucursal_id = AutocompleteCombobox(formulario_frame, completevalues=sucursales_ids)
     promo_id = AutocompleteCombobox(formulario_frame, completevalues=promos_ids)
     cancha = ttk.Entry(formulario_frame)
-    
+
     # date entry
     fecha = DateEntry(formulario_frame, date_pattern='yyyy-mm-dd', width=12, background='darkblue', foreground='white', borderwidth=2)
 
@@ -77,7 +77,7 @@ def mostrar_agregar_reserva():
             cursor.execute("SELECT precio_agregado FROM promos WHERE id = %s", (promo_id.get(),))
             promo_precio = cursor.fetchone()[0]
             precio += promo_precio
-        
+
         query = '''INSERT INTO reservas (sucursal_id, promo_id, cancha, fecha, hora_inicio, hora_final, balas_extras, precio_total)
                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'''
         valores = (sucursal_id.get(), promo_id.get(), cancha.get(), fecha.get(), hora_inicio.get(), hora_final.get(), balas_extras.get(), precio)
@@ -123,12 +123,12 @@ def mostrar_agregar_promo():
 
 def mostrar_ver_reservas():
     limpiar_frame(contenido_frame)
-    
+
     canvas = tk.Canvas(contenido_frame)
     scrollbar_y = ttk.Scrollbar(contenido_frame, orient="vertical", command=canvas.yview)
     scrollbar_x = ttk.Scrollbar(contenido_frame, orient="horizontal", command=canvas.xview)
     scrollable_frame = ttk.Frame(canvas)
-    
+
     scrollable_frame.bind(
         "<Configure>",
         lambda e: canvas.configure(
@@ -141,7 +141,7 @@ def mostrar_ver_reservas():
 
     cursor.execute("SELECT * FROM reservas")
     reservas = cursor.fetchall()
-    
+
     for idx, reserva in enumerate(reservas, 1):
         reserva_text = f"Reserva: {reserva[0]}\nSucursal ID: {reserva[1]}\nPromo ID: {reserva[2]}\nCancha: {reserva[3]}\nFecha: {reserva[4]}\nHora Inicio: {reserva[5]}\nHora Final: {reserva[6]}\nBalas Extras: {reserva[7]}\nPrecio Total: ${reserva[8]}"
         reserva_frame = ttk.Frame(scrollable_frame, padding="10 5", relief="ridge", borderwidth=2)
@@ -154,7 +154,7 @@ def mostrar_ver_reservas():
 
 def mostrar_eliminar_reserva():
     limpiar_frame(contenido_frame)
-    
+
     cursor.execute("SELECT id FROM reservas")
     reservas_ids = [str(row[0]) for row in cursor.fetchall()]
     
@@ -163,7 +163,7 @@ def mostrar_eliminar_reserva():
     ttk.Label(formulario_frame, text="Reserva ID").grid(row=0, column=0, padx=10, pady=10, sticky="w")
     reserva_id = AutocompleteCombobox(formulario_frame, completevalues=reservas_ids)
     reserva_id.grid(row=0, column=1, padx=10, pady=10)
-    
+
     def eliminar_reserva():
         cursor.execute(f'DELETE FROM reservas WHERE id = {reserva_id.get()}')
         conn.commit()
@@ -171,6 +171,26 @@ def mostrar_eliminar_reserva():
         mostrar_eliminar_reserva()
 
     ttk.Button(formulario_frame, text="Eliminar Reserva", command=eliminar_reserva).grid(row=1, column=1, pady=10)
+
+def mostrar_eliminar_promo():
+    limpiar_frame(contenido_frame)
+
+    cursor.execute("SELECT id FROM promos")
+    reservas_ids = [str(row[0]) for row in cursor.fetchall()]
+    
+    formulario_frame = ttk.Frame(contenido_frame, padding="10 10")
+    formulario_frame.grid(row=0, column=0, sticky="nsew")
+    ttk.Label(formulario_frame, text="Promo ID").grid(row=0, column=0, padx=10, pady=10, sticky="w")
+    reserva_id = AutocompleteCombobox(formulario_frame, completevalues=reservas_ids)
+    reserva_id.grid(row=0, column=1, padx=10, pady=10)
+
+    def eliminar_promo():
+        cursor.execute(f'DELETE FROM promos WHERE id = {reserva_id.get()}')
+        conn.commit()
+        messagebox.showinfo("Éxito", "Promo eliminada correctamente")
+        mostrar_eliminar_promo()
+
+    ttk.Button(formulario_frame, text="Eliminar Promo", command=eliminar_promo).grid(row=1, column=1, pady=10)
 
 
 #conf
@@ -197,5 +217,8 @@ btn_ver_reservas.pack(fill=tk.X, pady=10)
 
 btn_eliminar_reserva = ttk.Button(navegacion_frame, text="Eliminar Reserva", command=mostrar_eliminar_reserva)
 btn_eliminar_reserva.pack(fill=tk.X, pady=10)
+
+btn_eliminar_promo = ttk.Button(navegacion_frame, text="Eliminar Promo", command=mostrar_eliminar_promo)
+btn_eliminar_promo.pack(fill=tk.X, pady=10)
 
 root.mainloop()
