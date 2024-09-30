@@ -1,6 +1,4 @@
 Gestion de estado de pedidos
 -Toma de pedido
 -Control de Datos de Camioneros
--Salida del pedido
--Demoras
--Entrega 
+-Estado de los pedidos
