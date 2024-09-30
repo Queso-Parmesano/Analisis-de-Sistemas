@@ -4,6 +4,8 @@ use galletas;
 
 create table camioneros(
 idCamionero int(11) auto_increment,
+nombreCompleto varchar(250),
+dni int(11),
 modelo varchar(255),
 patente varchar(75),
 primary key (idCamionero)
