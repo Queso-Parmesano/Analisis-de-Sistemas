@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Estado de los Pedidos</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID Pedido</th>
+            <th>Camionero</th>
+            <th>Cliente</th>
+            <th>Fecha Registro</th>
+            <th>Fecha Entrega</th>
+            <th>Estado</th>
+            <th>Palets</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedido in pedidos %}
+        <tr>
+            <td>{{ pedido.idPedido }}</td>
+            <td>{{ pedido.camionero.nombreCompleto }}</td>
+            <td>{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</td>
+            <td>{{ pedido.fechaRegistro.strftime('%Y-%m-%d') }}</td>
+            <td>{{ pedido.fechaEntrega.strftime('%Y-%m-%d') }}</td>
+            <td>{{ pedido.estado }}</td>
+            <td>{{ pedido.cantPalets }}</td>
+            <td>
+                <a href="{{ url_for('actualizar_estado', idPedido=pedido.idPedido) }}" class="btn btn-sm btn-warning">Actualizar Estado</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

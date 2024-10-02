@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Actualizar Estado del Pedido #{{ pedido.idPedido }}</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.estado.label(class="form-control-label") }}
+        {{ form.estado(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+        <a href="{{ url_for('ver_pedidos') }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

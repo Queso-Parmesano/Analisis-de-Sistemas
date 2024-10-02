@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Pedidos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(201, 68, 68) !important; border-radius: 12px;">
+            <a class="navbar-brand" href="{{ url_for('index') }}">Gestión de Pedidos</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('registrar_camionero') }}">Registrar Camionero</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('registrar_cliente') }}">Registrar Cliente</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('tomar_pedido') }}">Tomar Pedido</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('ver_pedidos') }}">Ver Pedidos</a></li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

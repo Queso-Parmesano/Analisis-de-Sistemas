@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Registrar Cliente</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.nombre.label(class="form-control-label") }}
+        {{ form.nombre(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.apellido.label(class="form-control-label") }}
+        {{ form.apellido(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.dni.label(class="form-control-label") }}
+        {{ form.dni(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.telefono.label(class="form-control-label") }}
+        {{ form.telefono(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+{% endblock %}
