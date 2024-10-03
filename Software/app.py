@@ -162,12 +162,18 @@ def actualizar_estado(idPedido):
 def reportar_pedido(idPedido):
     pedido = Pedido.query.get_or_404(idPedido)
     form = ReportarPedido(obj=pedido)
-    if form.validate_on_submit():
+    
+    if type(form.cantPaq.data) == int and form.cantPaq.data <= 0:
+        flash('Ingrese un valor valido', 'info')
+        return render_template('reportar_pedido.html', form=form, pedido=pedido)
+    
+    if form.validate_on_submit() and form.cantPaq.data >= 0:
         pedido.paletsDañados = pedido.paletsDañados + form.cantPaq.data
         pedido.cantPalets = pedido.cantPalets - form.cantPaq.data
         db.session.commit()
         flash('Se reporto el pedido con exito.', 'info')
         return redirect(url_for('ver_pedidos'))
+        
     return render_template('reportar_pedido.html', form=form, pedido=pedido)
 
 if __name__ == '__main__':
