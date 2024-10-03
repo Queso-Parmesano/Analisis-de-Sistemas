@@ -1,15 +1,15 @@
-from wtforms import StringField, IntegerField, DateField, SelectField, SubmitField, TextAreaField
+from wtforms import StringField, IntegerField, DateField, SelectField, SubmitField
 from flask import Flask, render_template, request, redirect, url_for, flash
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 import datetime
 
-#pip install Flask Flask_SQLAlchemy Flask_WTF mysql-connector-python
+#pip install Flask Flask_SQLAlchemy Flask_WTF 
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'ss'
+app.config['SECRET_KEY'] = 'zaza'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost/gestion_pedidos'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -42,6 +42,7 @@ class Pedido(db.Model):
     fechaEntrega = db.Column(db.Date, nullable=False)
     estado = db.Column(db.String(125), nullable=False, default='procesando')
     cantPalets = db.Column(db.String(125), nullable=False)
+    paletsDañados = db.Column(db.String(125), nullable=False)
 
 class CamioneroForm(FlaskForm):
     nombreCompleto = StringField('Nombre Completo', validators=[DataRequired()])
@@ -61,7 +62,7 @@ class PedidoForm(FlaskForm):
     idCamionero = SelectField('Camionero', coerce=int, validators=[DataRequired()])
     idCliente = SelectField('Cliente', coerce=int, validators=[DataRequired()])
     fechaEntrega = DateField('Fecha de Entrega', format='%Y-%m-%d', validators=[DataRequired()])
-    peso = StringField('Peso', validators=[DataRequired()])
+    palets = StringField('Palets', validators=[DataRequired()])
     submit = SubmitField('Tomar Pedido')
 
 class ActualizarEstadoForm(FlaskForm):
@@ -69,9 +70,14 @@ class ActualizarEstadoForm(FlaskForm):
         ('Procesando', 'Procesando'),
         ('En Camino', 'En Camino'),
         ('Demorado', 'Demorado'),
-        ('Entregado', 'Entregado')
+        ('Entregado', 'Entregado'),
+        ('Rechazado', 'Rechazado')
     ], validators=[DataRequired()])
     submit = SubmitField('Actualizar Estado')
+
+class ReportarPedido(FlaskForm):
+    cantPaq = IntegerField('Cantidad de palets en mal estado', validators=[DataRequired()])
+    submit = SubmitField('Reportar pedido')
 
 @app.route('/')
 def index():
@@ -81,13 +87,13 @@ def index():
 def registrar_camionero():
     form = CamioneroForm()
     if form.validate_on_submit():
-        nuevo_camionero = Camionero(
+        nuevoCamionero = Camionero(
             nombreCompleto=form.nombreCompleto.data,
             dni=form.dni.data,
             modelo=form.modelo.data,
             patente=form.patente.data
         )
-        db.session.add(nuevo_camionero)
+        db.session.add(nuevoCamionero)
         db.session.commit()
         flash('Camionero registrado exitosamente', 'success')
         return redirect(url_for('index'))
@@ -97,13 +103,13 @@ def registrar_camionero():
 def registrar_cliente():
     form = ClienteForm()
     if form.validate_on_submit():
-        nuevo_cliente = Cliente(
+        nuevoCliente = Cliente(
             nombre=form.nombre.data,
             apellido=form.apellido.data,
             dni=form.dni.data,
             telefono=form.telefono.data
         )
-        db.session.add(nuevo_cliente)
+        db.session.add(nuevoCliente)
         db.session.commit()
         flash('Cliente registrado exitosamente', 'success')
         return redirect(url_for('index'))
@@ -115,14 +121,14 @@ def tomar_pedido():
     form.idCamionero.choices = [(c.idCamionero, c.nombreCompleto) for c in Camionero.query.all()]
     form.idCliente.choices = [(c.idCliente, f"{c.nombre} {c.apellido}") for c in Cliente.query.all()]
     if form.validate_on_submit():
-        nuevo_pedido = Pedido(
+        nuevoPedido = Pedido(
             idCamionero=form.idCamionero.data,
             idCliente=form.idCliente.data,
             fechaEntrega=form.fechaEntrega.data,
-            peso=form.peso.data,
+            cantPalets=form.palets.data,
             estado='Procesando'
         )
-        db.session.add(nuevo_pedido)
+        db.session.add(nuevoPedido)
         db.session.commit()
         flash('Pedido tomado exitosamente', 'success')
         return redirect(url_for('index'))
@@ -137,12 +143,32 @@ def ver_pedidos():
 def actualizar_estado(idPedido):
     pedido = Pedido.query.get_or_404(idPedido)
     form = ActualizarEstadoForm(obj=pedido)
+    if pedido.estado == 'Entregado':
+        flash('El pedido ya fue entregado, no se puede actualizar.', 'info')
+        return redirect(url_for('ver_pedidos'))
+    
+    if pedido.estado == 'Rechazado':
+        flash('El pedido fue Rechazado, no se puede actualizar.', 'info')
+        return redirect(url_for('ver_pedidos'))
+    
     if form.validate_on_submit():
         pedido.estado = form.estado.data
         db.session.commit()
-        flash('Estado del pedido actualizado exitosamente', 'success')
+        flash('Estado del pedido actualizado con exito.', 'success')
         return redirect(url_for('ver_pedidos'))
     return render_template('actualizar_estado.html', form=form, pedido=pedido)
+
+@app.route('/reportar_pedido/<int:idPedido>', methods=['GET','POST'])
+def reportar_pedido(idPedido):
+    pedido = Pedido.query.get_or_404(idPedido)
+    form = ReportarPedido(obj=pedido)
+    if form.validate_on_submit():
+        pedido.paletsDañados = pedido.paletsDañados + form.cantPaq.data
+        pedido.cantPalets = pedido.cantPalets - form.cantPaq.data
+        db.session.commit()
+        flash('Se reporto el pedido con exito.', 'info')
+        return redirect(url_for('ver_pedidos'))
+    return render_template('reportar_pedido.html', form=form, pedido=pedido)
 
 if __name__ == '__main__':
     app.run(debug=True)

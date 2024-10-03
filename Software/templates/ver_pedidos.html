@@ -5,13 +5,14 @@
 <table class="table table-bordered">
     <thead>
         <tr>
-            <th>ID Pedido</th>
+            <th>ID <br> Pedido</th>
             <th>Camionero</th>
             <th>Cliente</th>
-            <th>Fecha Registro</th>
-            <th>Fecha Entrega</th>
+            <th>Fecha <br> Registro</th>
+            <th>Fecha <br> Entrega</th>
             <th>Estado</th>
             <th>Palets</th>
+            <th>Palets <br> Dañados</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -25,11 +26,16 @@
             <td>{{ pedido.fechaEntrega.strftime('%Y-%m-%d') }}</td>
             <td>{{ pedido.estado }}</td>
             <td>{{ pedido.cantPalets }}</td>
-            <td>
-                <a href="{{ url_for('actualizar_estado', idPedido=pedido.idPedido) }}" class="btn btn-sm btn-warning">Actualizar Estado</a>
-            </td>
+            <td>{{ pedido.paletsDañados }}</td>
+            <td><a href="{{ url_for('actualizar_estado', idPedido=pedido.idPedido) }}" class="btn btn-sm btn-warning">Actualizar</a>  <a href="{{ url_for('reportar_pedido', idPedido=pedido.idPedido) }}" class="btn btn-sm btn-warning" style="background-color: rgb(230, 64, 64) !important;">Reportar</a></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<style>
+    .table th {
+        text-align: center;
+        align-content: center;
+    }
+</style>
 {% endblock %}

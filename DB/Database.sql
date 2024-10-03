@@ -1,33 +1,55 @@
-create database galletas;
-use galletas;
+CREATE DATABASE gestion_pedidos;
+USE gestion_pedidos;
 
-create table camioneros(
-idCamionero int(11) auto_increment,
-nombreCompleto varchar(250),
-dni int(11),
-modelo varchar(255),
-patente varchar(75),
-primary key (idCamionero)
-);
+CREATE TABLE `camioneros` (
+  `idCamionero` int(11) NOT NULL,
+  `nombreCompleto` varchar(250) DEFAULT NULL,
+  `dni` int(11) DEFAULT NULL,
+  `modelo` varchar(255) DEFAULT NULL,
+  `patente` varchar(75) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table clientes(
-idCliente int(11) auto_increment,
-nombre varchar(250),
-apellido varchar(250),
-dni int(11),
-telefono varchar(25),
-primary key (idCliente)
-);
+CREATE TABLE `clientes` (
+  `idCliente` int(11) NOT NULL,
+  `nombre` varchar(250) DEFAULT NULL,
+  `apellido` varchar(250) DEFAULT NULL,
+  `dni` int(11) DEFAULT NULL,
+  `telefono` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-create table pedidos(
-idPedido int(11) auto_increment,
-idCamionero int(11),
-idCliente int(11),
-fechaRegistro date,
-fechaEntrega date,
-estado varchar(125),
-peso varchar(125),
-primary key (idPedido),
-foreign key(idCamionero) references camioneros(idCamionero),
-foreign key(idCliente) references clientes(idCliente)
-);
+CREATE TABLE `pedidos` (
+  `idPedido` int(11) NOT NULL,
+  `idCamionero` int(11) DEFAULT NULL,
+  `idCliente` int(11) DEFAULT NULL,
+  `fechaRegistro` date DEFAULT NULL,
+  `fechaEntrega` date DEFAULT NULL,
+  `estado` varchar(125) DEFAULT NULL,
+  `cantPalets` int(11) DEFAULT NULL,
+  `paletsDañados` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `camioneros`
+  ADD PRIMARY KEY (`idCamionero`);
+
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`idCliente`);
+
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`idPedido`),
+  ADD KEY `idCamionero` (`idCamionero`),
+  ADD KEY `idCliente` (`idCliente`);
+
+ALTER TABLE `camioneros`
+  MODIFY `idCamionero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+ALTER TABLE `clientes`
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+ALTER TABLE `pedidos`
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`idCamionero`) REFERENCES `camioneros` (`idCamionero`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idCliente`) ON DELETE CASCADE;
+
+COMMIT;
