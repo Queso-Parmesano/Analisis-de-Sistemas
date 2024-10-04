@@ -1,5 +1,5 @@
 from wtforms import StringField, IntegerField, DateField, SelectField, SubmitField
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash
 from wtforms.validators import DataRequired
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
@@ -7,7 +7,7 @@ import datetime
 
 #pip install Flask Flask_SQLAlchemy Flask_WTF 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="templates", static_url_path="")
 
 app.config['SECRET_KEY'] = 'zaza'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost/gestion_pedidos'
@@ -177,4 +177,4 @@ def reportar_pedido(idPedido):
     return render_template('reportar_pedido.html', form=form, pedido=pedido)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host= 'www.phobos.net.ar', debug= True)
