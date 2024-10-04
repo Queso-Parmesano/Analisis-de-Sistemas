@@ -25,7 +25,7 @@ CREATE TABLE `pedidos` (
   `fechaEntrega` date DEFAULT NULL,
   `estado` varchar(125) DEFAULT NULL,
   `cantPalets` int(11) DEFAULT NULL,
-  `paletsDañados` int(11) DEFAULT 0
+  `paletsDañados` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `camioneros`
@@ -40,16 +40,16 @@ ALTER TABLE `pedidos`
   ADD KEY `idCliente` (`idCliente`);
 
 ALTER TABLE `camioneros`
-  MODIFY `idCamionero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `idCamionero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `clientes`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `pedidos`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `pedidos`
   ADD CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`idCamionero`) REFERENCES `camioneros` (`idCamionero`) ON DELETE CASCADE,
   ADD CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`idCliente`) ON DELETE CASCADE;
-
+  
 COMMIT;
