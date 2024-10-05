@@ -122,11 +122,12 @@ def tomar_pedido():
     form.idCliente.choices = [(c.idCliente, f"{c.nombre} {c.apellido}") for c in Cliente.query.all()]
     if form.validate_on_submit():
         nuevoPedido = Pedido(
-            idCamionero=form.idCamionero.data,
-            idCliente=form.idCliente.data,
-            fechaEntrega=form.fechaEntrega.data,
-            cantPalets=form.palets.data,
-            estado='Procesando'
+            idCamionero = form.idCamionero.data,
+            idCliente = form.idCliente.data,
+            fechaEntrega = form.fechaEntrega.data,
+            cantPalets = form.palets.data,
+            estado ='Procesando',
+            paletsDañados = 0
         )
         db.session.add(nuevoPedido)
         db.session.commit()
@@ -163,9 +164,11 @@ def reportar_pedido(idPedido):
     pedido = Pedido.query.get_or_404(idPedido)
     form = ReportarPedido(obj=pedido)
     
-    if type(form.cantPaq.data) == int and form.cantPaq.data <= 0:
-        flash('Ingrese un valor valido', 'info')
-        return render_template('reportar_pedido.html', form=form, pedido=pedido)
+    if type(form.cantPaq.data) == int: 
+        if form.cantPaq.data <= 0 or form.cantPaq.data > pedido.cantPalets:
+            flash('Ingrese un valor valido', 'info')
+            return render_template('reportar_pedido.html', form=form, pedido=pedido)
+
     
     if form.validate_on_submit() and form.cantPaq.data >= 0:
         pedido.paletsDañados = pedido.paletsDañados + form.cantPaq.data
