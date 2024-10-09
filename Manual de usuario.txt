@@ -1,0 +1,21 @@
+Este software tiene estas siguientes funcionalidades:
+-Ingresar Clientes nuevos
+-Ingreser Conductores de Camiones
+-Toma de pedidos
+-Ver estados de los pedidos
+ |-> Modificacion del estado de los pedidos
+ |-> Reportar palets rotos
+
+-Ingresar Clientes nuevos
+En esta vista se tiene que ingresar: Nombre del cliente, Apellido del cliente, DNI del cliente y un numero telefonico
+
+-Ingreser Conductores de Camiones
+En esta vista se tiene que ingresar: Nombre del camionero, DNI del camionero, Modelo del vehiculo y la patente del vehiculo
+
+-Toma de pedidos
+En esta vista se tiene que seleccionar el cliente el cual esta haciendo el pedido, despues seleccionar el camionero designado
+La fecha de entrega esperada y por ultimo la cantidad de palets de galletitas
+
+-Ver estados de los pedidos
+Aca hay 2 vistas, la primera te da la posibilidad de cambiar el estado del pedido entre "Procesando", "En camino", "Entregado", "Rechazado" o "Demorado" 
+La segunda vista te permite reportar palets en mal estado, si es que existen
