@@ -1,0 +1,12 @@
+-Universal
+|-> Inicio de sesion
+
+-Vendedores
+|-> Venta de autos
+|-> Compra de autos
+|-> Ver inventario
+|-> Pedir autos a la fabrica (restockear inventario)
+
+-Administrador/Gerente
+|-> Ver estadisticas de los vendedores
+|-> Registrar Vendedores
