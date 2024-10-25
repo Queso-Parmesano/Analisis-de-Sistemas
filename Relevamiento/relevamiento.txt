@@ -1,0 +1,41 @@
+Entrevista entre el dueño de una concesionaria (DC) y los desarrolladores de software (DS1 y DS2):
+
+DC: Buenos días, gracias por venir. Estoy interesado en desarrollar un software para mi concesionaria que nos ayude a mejorar el proceso de compra y venta de autos. Tengo algunas ideas claras de lo que necesito y me gustaría ver cómo podemos hacerlas realidad.
+
+DS1: ¡Claro! Estamos aquí para escuchar sus necesidades y proponer una solución adecuada. Cuéntenos más sobre lo que tiene en mente.
+
+DC: Perfecto. Lo principal que necesito es un sistema de usuarios. Quiero que mis vendedores, gerentes y otros empleados tengan acceso a la plataforma con distintos niveles de permisos. Por ejemplo, los vendedores solo deberían poder ver y gestionar sus ventas, mientras que los gerentes puedan ver estadísticas globales y modificar los datos de los autos.
+
+DS2: Entendido. Entonces, el sistema de usuarios tendría distintos roles y permisos. Podemos personalizar esos roles para que se ajusten a las necesidades de su equipo. ¿También necesitaría una forma para que los clientes creen cuentas o solo para su equipo interno?
+
+DC: Solo para el equipo interno por ahora, aunque más adelante me gustaría considerar abrirlo para clientes, quizás para consultas o hacer seguimientos de sus compras.
+
+DS1: Claro, lo podemos dejar preparado para una futura expansión de funcionalidades de cara a los clientes. ¿Qué más le gustaría que tenga el sistema?
+
+DC: Quisiera también un sistema para ver estadísticas de los vendedores. Quiero poder analizar cómo le está yendo a cada uno en términos de ventas, cuántos autos han vendido en un período determinado, qué tipo de autos están vendiendo más, y cosas así.
+
+DS2: Muy bien, podríamos crear un panel de control para que tanto usted como los gerentes puedan ver gráficos y datos detallados de las ventas. ¿Le gustaría que esos reportes fueran personalizables? Por ejemplo, filtrar por fecha, tipo de auto, vendedor, etc.
+
+DC: Sí, eso suena ideal. Me interesa poder comparar las ventas de diferentes períodos y tener visibilidad sobre los mejores vendedores del mes.
+
+DS1: Genial. Entonces, tendríamos un módulo de análisis de datos con gráficos y reportes dinámicos. ¿Algo más que le gustaría?
+
+DC: Sí, lo más importante sería el sistema de compra y venta de autos. Necesito que podamos cargar los autos que tenemos en inventario, sus detalles como marca, modelo, precio, y que se puedan marcar como vendidos. También quisiera que podamos registrar cuando compramos autos usados, ya sea de otros concesionarios o de clientes particulares.
+
+DS2: Entendido. Entonces, el sistema permitiría gestionar tanto las compras como las ventas, manteniendo un inventario actualizado. Podríamos hacer que sea fácil registrar cada operación, con campos para agregar toda la información relevante de cada auto, como características, año de fabricación, kilometraje, y precio de compra o venta.
+
+DC: Exactamente. Además, sería útil que el sistema nos sugiriera precios de venta para los autos usados, basado en el mercado actual o en los precios de autos similares que hemos vendido antes.
+
+DS1: Eso es muy factible. Podemos integrar una función que analice los datos históricos de ventas y le sugiera precios competitivos para los autos usados.
+
+DC: Perfecto. Y una última cosa, me gustaría que el sistema fuera fácil de usar para los vendedores, con una interfaz simple. No quiero que pierdan tiempo aprendiendo a usar el sistema.
+
+DS2: Claro, priorizaremos la usabilidad. La interfaz será intuitiva y fácil de navegar, con accesos rápidos para las funciones principales, como registrar una venta o consultar el inventario.
+
+DC: Eso sería ideal. Entonces, para resumir, necesito un sistema que permita gestionar usuarios con roles y permisos, tener estadísticas detalladas de los vendedores, y manejar todo el proceso de compra y venta de autos de forma clara y organizada.
+
+DS1: Lo tenemos claro. Vamos a comenzar a diseñar el sistema y le haremos una propuesta detallada con tiempos y costos en los próximos días.
+
+DC: Excelente, espero su propuesta. Muchas gracias.
+
+DS2: Gracias a usted, estamos emocionados por trabajar en este proyecto.
