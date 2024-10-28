@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Vendedor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-image: url('/fondoinicial.jpg'); /* Ajusta la ruta de la imagen */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            display: flex;
+            flex-direction: column; /* Cambiar a columna para el header y contenido */
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Posicionamiento relativo para la capa de superposición */
+        }
+
+        .overlay {
+            position: absolute; /* Posicionamiento absoluto para cubrir todo el fondo */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Color negro con opacidad */
+            z-index: 1; /* Asegurarse de que esté detrás del contenido */
+        }
+
+        .header {
+            background-color: rgba(255, 255, 255, 0.86); /* Fondo blanco con un poco de opacidad */
+            padding: 10px 20px; /* Padding del header */
+            display: flex; /* Flexbox para alinear contenido */
+            align-items: center; /* Centrar verticalmente */
+            justify-content: space-between; /* Espacio entre los extremos */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra más ligera */
+            z-index: 2; /* Asegurarse de que esté encima de la capa de fondo */
+        }
+
+        .logo {
+            width: 100px; /* Ajustar tamaño del logo */
+            height: auto; /* Mantener proporción */
+            margin-left: auto; /* Alinear logo a la derecha */
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center; /* Centrar verticalmente icono y texto */
+            margin-right: 20px; /* Separar del logo */
+        }
+
+        .user-icon {
+            font-size: 24px; /* Tamaño del icono del usuario */
+            margin: 0 0 5px 5px; /* Sin margen superior, margen inferior de 5px */
+            color: #007bff; /* Color del icono */
+            margin-right: 5px; /* Separar icono de texto */
+        }
+
+        h1 {
+            font-size: 25px; /* Tamaño de fuente reducido para el título */
+            margin: 0 0 5px 0; /* Sin margen superior, margen inferior de 5px */
+            font-family: 'Arial', sans-serif; /* Tipo de fuente */
+            color: #343a40; /* Cambiar color del texto del título */
+        }
+
+        .gerente-name {
+            font-size: 25px; /* Tamaño de fuente igual al de "Vendedor" */
+            margin: 0 0 5px 7px; /* Sin margen superior, margen inferior de 5px */
+            color: #6c757d; /* Color gris para el nombre */
+            display: flex; /* Usar flex para alinear */
+            align-items: center; /* Centrar verticalmente */
+        }
+
+        .btn-container {
+            display: flex; /* Disposición horizontal */
+            justify-content: center; /* Centrar botones en el header */
+            flex-grow: 1; /* Permitir que el contenedor de botones ocupe el espacio restante */
+            margin: 0 20px; /* Separar botones de los extremos */
+        }
+
+        .btn {
+            margin: 0 5px; /* Separar los botones entre sí */
+            font-size: 16px; /* Tamaño de fuente para los botones */
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 10px 15px; /* Ajustar padding interno del botón */
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Color de fondo para cerrar sesión */
+            border: none; /* Sin borde */
+            font-weight: bold; /* Resaltar el texto del botón */
+            font-size: 16px; /* Tamaño de fuente para el botón de cerrar sesión */
+            padding: 8px 12px; /* Ajustar padding para un botón más equilibrado */
+            margin-left: 10px; /* Separar botón de cerrar sesión */
+            text-align: center; /* Centrar texto del botón */
+            display: flex; /* Usar flex para centrar el texto */
+            align-items: center; /* Centrar verticalmente */
+            justify-content: center; /* Centrar horizontalmente */
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333; /* Color de fondo al pasar el ratón */
+        }
+
+        .content-box {
+            flex: 1; /* Hacer que el contenedor ocupe el espacio restante */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centrar contenido */
+            flex-direction: column; /* Disposición vertical */
+            z-index: 2; /* Asegurarse de que esté encima de la capa de fondo */
+        }
+
+        .form-container {
+            background-color: white; /* Fondo blanco */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .form-group {
+            text-align: left;
+            font-size: 25px;
+        }
+
+        .form-group2 {
+            text-align: center;
+        }
+
+        .btn-secondary {
+            margin-top: 20px; /* Espaciado adicional para el botón de volver */
+        }
+
+        .asd {
+            margin: 18px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .label {
+            margin-left: 6px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div> <!-- Capa semi-transparente -->
+    <div class="header">
+        <div class="user-info">
+            <i class="fas fa-user user-icon"></i> <!-- Icono de usuario -->
+            <h1>Gerente:</h1>
+            <div class="gerente-name">Olaso</div>
+        </div>
+        <div class="btn-container">
+            <a href="{{ url_for('registrar_vendedor') }}" class="btn btn-primary">Registrar Vendedor</a>
+            <a href="{{ url_for('ver_vendedores') }}" class="btn btn-primary">Ver Vendedores</a>
+            <a href="{{ url_for('ver_ventas') }}" class="btn btn-primary">Ver Ventas</a>
+            <a href="{{ url_for('ver_estadisticas') }}" class="btn btn-primary">Ver Estadísticas</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+        <a href="{{ url_for('gerente_dashboard') }}">
+            <img src="/logo.png" alt="Logo de la Empresa" class="logo"> <!-- Logo como enlace -->
+        </a>
+    </div>
+    <div class="content-box">
+        <div class="form-container">
+            <h1 class="asd">Editar Vendedor</h1>
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <div class="label">
+                            {{ form.nombre.label(class="form-label") }}
+                        </div>
+                            {{ form.nombre(class="form-control") }}
+                            {% for error in form.nombre.errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group2">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                        <a href="{{ url_for('ver_vendedores') }}" class="btn btn-secondary">Volver</a>
+                    </div>
+                </form>
+        </div>
+    </div>
+</body>
+</html>
