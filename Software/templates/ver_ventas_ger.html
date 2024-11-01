@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Ventas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('ventasTable');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                const tdCliente = tr[i].getElementsByTagName('td')[2];
+                const tdMarca = tr[i].getElementsByTagName('td')[5];
+                const tdModelo = tr[i].getElementsByTagName('td')[6];
+                const tdFecha = tr[i].getElementsByTagName('td')[8];
+                if (tdCliente || tdMarca || tdModelo || tdFecha) {
+                    const txtValueCliente = tdCliente.textContent || tdCliente.innerText;
+                    const txtValueMarca = tdMarca.textContent || tdMarca.innerText;
+                    const txtValueModelo = tdModelo.textContent || tdModelo.innerText;
+                    const txtValueFecha = tdFecha.textContent || tdFecha.innerText;
+                    if (txtValueCliente.toLowerCase().indexOf(filter) > -1 || txtValueMarca.toLowerCase().indexOf(filter) > -1 || txtValueModelo.toLowerCase().indexOf(filter) > -1 || txtValueFecha.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-image: url('/fondoinicial.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .header {
+            background-color: rgba(255, 255, 255, 0.86);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-left: auto;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .user-icon {
+            font-size: 24px;
+            margin: 0 0 5px 5px;
+            color: #007bff;
+            margin-right: 5px;
+        }
+
+
+        .gerente-name {
+            font-size: 25px; /* Tamaño de fuente igual al de "Vendedor" */
+            margin: 0 0 5px 7px; /* Sin margen superior, margen inferior de 5px */
+            color: #6c757d; /* Color gris para el nombre */
+            display: flex; /* Usar flex para alinear */
+            align-items: center; /* Centrar verticalmente */
+        }
+
+        .vendedor-name {
+            font-size: 25px;
+            margin: 0 0 5px 7px;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .btn {
+            margin: 0 5px;
+            font-size: 16px;
+            border-radius: 20px;
+            padding: 10px 15px;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 8px 12px;
+            margin-left: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content-box {
+            flex: 1;
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: flex-start; /* Alinear al inicio verticalmente */
+            z-index: 2;
+            margin-top: 80px; /* Espacio para el encabezado fijo */
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            text-align: center;
+            margin: 20px auto; /* Separar del borde y centrar */
+        }
+
+        .btn-secondary {
+            margin-top: 20px;
+        }
+
+        .table-responsive {
+            max-height: 250px; /* Altura máxima para el contenedor de la tabla */
+            overflow-y: auto; /* Permitir desplazamiento vertical */
+            margin-top: 10px; /* Espacio superior para separación */
+            position: relative; /* Para el posicionamiento absoluto del encabezado */
+        }
+
+        .table-header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 2;
+        }
+
+        table {
+            width: 100%; /* Asegura que la tabla ocupe todo el espacio disponible */
+            table-layout: auto; /* Ajuste automático de columnas */
+        }
+
+        .asd {
+            margin: 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .btn-square {
+            width: 40px; /* Ancho del botón */
+            height: 40px; /* Altura del botón */
+            padding: 0; /* Sin relleno adicional */
+            margin: 0 5px; /* Espaciado entre botones */
+            display: flex; /* Para centrar el icono */
+            align-items: center; /* Centrar verticalmente */
+            justify-content: center; /* Centrar horizontalmente */
+        }
+
+        .h1 {
+            font-size: 25px;
+            margin: 0 0 5px 0;
+            font-family: 'Arial', sans-serif;
+            color: #343a40;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay"></div> <!-- Capa semi-transparente -->
+    <div class="header">
+        <div class="user-info">
+            <i class="fas fa-user user-icon"></i> <!-- Icono de usuario -->
+            <h1 class= "h1">Gerente:</h1>
+            <div class="gerente-name">Olaso</div>
+        </div>
+        <div class="btn-container">
+            <a href="{{ url_for('registrar_vendedor') }}" class="btn btn-primary">Registrar Vendedor</a>
+            <a href="{{ url_for('ver_vendedores') }}" class="btn btn-primary">Ver Vendedores</a>
+            <a href="{{ url_for('ver_ventas_ger') }}" class="btn btn-primary">Ver Ventas</a>
+            <a href="{{ url_for('ver_estadisticas') }}" class="btn btn-primary">Ver Estadísticas</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+        <a href="{{ url_for('gerente_dashboard') }}">
+            <img src="/logo.png" alt="Logo de la Empresa" class="logo"> <!-- Logo como enlace -->
+        </a>
+    </div>
+    <div class="content-box">
+        <div class="form-container">
+        <h1 class="asd">Ventas Registradas</h1>
+        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Buscar por cliente, marca, modelo o fecha" onkeyup="filterTable()">
+        <div>
+            <div class="table-responsive">
+                <table class="table table-striped" id="ventasTable">
+                    <thead class="table-header">
+                        <tr>
+                            <th>ID</th>
+                            <th>Vendedor</th>
+                            <th>Nombre Cliente</th>
+                            <th>DNI</th>
+                            <th>Teléfono</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Precio</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for venta in ventas %}
+                        <tr>
+                            <td>{{ venta.id }}</td>
+                            <td>{{ venta.vend.nombre if venta.vend else 'N/A' }}</td>
+                            <td>{{ venta.nombreC }}</td>
+                            <td>{{ venta.dni }}</td>
+                            <td>{{ venta.telefono }}</td>
+                            <td>{{ venta.marcaA }}</td>
+                            <td>{{ venta.modeloA }}</td>
+                            <td>{{ venta.precioA }}</td>
+                            <td>{{ venta.fecha }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Volver</a>
+        </div>
+    </div>
+</body>
+</html>
