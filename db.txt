@@ -1,0 +1,32 @@
+CREATE DATABASE chimesubo;
+
+USE chimesubo;
+
+CREATE TABLE vendedor(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+CREATE TABLE inventario(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    autor INT,
+    marca VARCHAR(50),
+    modelo VARCHAR(50),
+    precio DOUBLE(10,2),
+    Foreign Key (autor) REFERENCES vendedor(id)
+);
+
+CREATE TABLE ventas(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idA INT,
+    idV INT,
+    nombreC VARCHAR(50),
+    dni INT(11),
+    telefono INT(11),
+    marcaA VARCHAR(50),
+    modeloA VARCHAR(50),
+    precioA DOUBLE(10,2),
+    fecha DATE DEFAULT NULL,
+    Foreign Key (idA) REFERENCES inventario(id),
+    Foreign Key (idV) REFERENCES vendedor(id)
+);
