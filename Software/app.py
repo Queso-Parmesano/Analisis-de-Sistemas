@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 import datetime
 
+#pip install Flask Flask_SQLAlchemy mysql_connector Flask_WTF
 
 app = Flask(__name__, static_folder="templates", static_url_path="")
 
